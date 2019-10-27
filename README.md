@@ -47,24 +47,15 @@ roscore
 ```
 2. Keep the roscore running. Open a new terminal and type the following commands for the Talker node :-
 ```
-source ~/catkin_ws/devel/setup.bash
+rosrun beginner_tutorials talker
 ```
 
-## Run the demo using launch file
-
-After building the project using above instructions
-To run the talker and listener nodes using launch file, follow the given steps.
+3. To run Subscriber node, open a new terminal and type the following command :-
 ```
-source ~/catkin_ws/devel/setup.bash
-roslaunch beginner_tutorials beginner_tutorial.launch
+rosrun beginner_tutorials listener
 ```
 
-Optionally, we can specify the publisher frequency along with launch file as input argument to change the publisher frequency.
-```
-roslaunch beginner_tutorials beginner_tutorial.launch frequency:=20
-```
-
-This will start roscore and talker and listener nodes in two terminals. 
+This will start roscore and talker and listener nodes in separate terminals. 
 
 
 ## Checking the log messages
@@ -72,4 +63,3 @@ The output of rqt_console with info and warn logger level messages has been adde
 ```
 rqt_console
 ```
-
