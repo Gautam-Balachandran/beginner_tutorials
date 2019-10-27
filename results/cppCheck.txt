@@ -1,1 +1,4 @@
-
+[listener.cpp:1]: (information) Include file: "ros/ros.h" not found.
+[listener.cpp:2]: (information) Include file: "std_msgs/String.h" not found.
+[talker.cpp:1]: (information) Include file: "ros/ros.h" not found.
+[talker.cpp:2]: (information) Include file: "std_msgs/String.h" not found.
