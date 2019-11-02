@@ -1,5 +1,8 @@
 # beginner_tutorials
 A beginner tutorials of ROS
+---
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+---
 
 ## Project Overview
 
@@ -55,7 +58,35 @@ rosrun beginner_tutorials talker
 rosrun beginner_tutorials listener
 ```
 
-This will start roscore and talker and listener nodes in separate terminals. 
+This will start roscore and talker and listener nodes in separate terminals.
+
+## Running the project using the Launch file
+After building the projec,run the talker and listener nodes using launch file as mentioned in the following steps :
+
+1. Source the workspace as usual
+```
+source ~/catkin_ws/devel/setup.bash
+```
+2. Run the following command to launch using the launch file given
+```
+roslaunch beginner_tutorials stringChanger.launch
+```
+3. The publisher frequency is one of the input parameters that can be specified by user when runnning the launch file as shown below. If this frequency is not mentioned, the system will take the default frequecy of 20.
+```
+roslaunch beginner_tutorials stringChanger.launch frequency:=50
+```
+
+## Running the service
+
+1. changeOutputMessage is a custom service that has been added to the project. This can be used to modify the base string published by the talker. After building the project and launching the talker-listener nodes, the list of available services can be seen using the command :
+```
+roservice list
+```
+2. To run the service, enter the following command:
+```
+rosservice call /changeOutputMessage "This is an user entered string!"
+```
+This will update the base string published by the talker to "This is an user entered string!"
 
 
 ## Checking the log messages
