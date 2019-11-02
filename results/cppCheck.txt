@@ -1,4 +1,6 @@
-[listener.cpp:1]: (information) Include file: "ros/ros.h" not found.
-[listener.cpp:2]: (information) Include file: "std_msgs/String.h" not found.
-[talker.cpp:1]: (information) Include file: "ros/ros.h" not found.
-[talker.cpp:2]: (information) Include file: "std_msgs/String.h" not found.
+[listener.cpp:16]: (information) Include file: "ros/ros.h" not found.
+[listener.cpp:17]: (information) Include file: "std_msgs/String.h" not found.
+[listener.cpp:18]: (information) Include file: "beginner_tutorials/OutputString.h" not found.
+[talker.cpp:17]: (information) Include file: "ros/ros.h" not found.
+[talker.cpp:18]: (information) Include file: "std_msgs/String.h" not found.
+[talker.cpp:19]: (information) Include file: "beginner_tutorials/OutputString.h" not found.
