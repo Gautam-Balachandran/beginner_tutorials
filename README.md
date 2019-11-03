@@ -78,13 +78,13 @@ roslaunch beginner_tutorials stringChanger.launch frequency:=50
 
 ## Running the service
 
-1. changeOutputMessage is a custom service that has been added to the project. This can be used to modify the base string published by the talker. After building the project and launching the talker-listener nodes, the list of available services can be seen using the command :
+1. Output_String is a custom service that has been added to the project. This can be used to modify the base string published by the talker. After building the project and launching the talker-listener nodes, the list of available services can be seen using the command :
 ```
 roservice list
 ```
 2. To run the service, enter the following command:
 ```
-rosservice call /changeOutputMessage "This is an user entered string!"
+rosservice call /Output_String "This is an user entered string!"
 ```
 This will update the base string published by the talker to "This is an user entered string!"
 
