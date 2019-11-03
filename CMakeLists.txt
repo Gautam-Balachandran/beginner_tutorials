@@ -55,7 +55,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_service_files(
   FILES
-  OutputString.srv
+  Output_String.srv
 )
 
 ## Generate actions in the 'action' folder
