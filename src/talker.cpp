@@ -16,7 +16,7 @@
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-#include "beginner_tutorials/OutputString.h"
+#include "beginner_tutorials/Output_String.h"
 
 /**
  * Initializing the input string
@@ -32,8 +32,8 @@ extern std::string stringMsg = "This is the custom input String!";
  *
  * @return     Boolean value representing callback success or failure
  */
-bool changeOutputMessage(beginner_tutorials::OutputString::Request &req,
-                         beginner_tutorials::OutputString::Response &res) {
+bool changeOutputMessage(beginner_tutorials::Output_String::Request &req,
+                         beginner_tutorials::Output_String::Response &res) {
   stringMsg = req.inputString;
   res.outputString = stringMsg;             // Output String modified
 
