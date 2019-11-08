@@ -1,6 +1,16 @@
-[listener.cpp:16]: (information) Include file: "ros/ros.h" not found.
-[listener.cpp:17]: (information) Include file: "std_msgs/String.h" not found.
-[listener.cpp:18]: (information) Include file: "beginner_tutorials/OutputString.h" not found.
-[talker.cpp:17]: (information) Include file: "ros/ros.h" not found.
-[talker.cpp:18]: (information) Include file: "std_msgs/String.h" not found.
-[talker.cpp:19]: (information) Include file: "beginner_tutorials/OutputString.h" not found.
+gautam@gautam-Inspiron-7373:~/catkin_ws/src/beginner_tutorials$ cppcheck --enable=all --check-config src
+Checking src/listener.cpp...
+[src/listener.cpp:34]: (information) Include file: "ros/ros.h" not found.
+[src/listener.cpp:35]: (information) Include file: "std_msgs/String.h" not found.
+[src/listener.cpp:36]: (information) Include file: "beginner_tutorials/OutputString.h" not found.
+1/2 files checked 50% done
+Checking src/talker.cpp...
+[src/talker.cpp:36]: (information) Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results.
+[src/talker.cpp:37]: (information) Include file: <cmath> not found. Please note: Cppcheck does not need standard library headers to get proper results.
+[src/talker.cpp:38]: (information) Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results.
+[src/talker.cpp:39]: (information) Include file: <tf/transform_broadcaster.h> not found. Please note: Cppcheck does not need standard library headers to get proper results.
+[src/talker.cpp:40]: (information) Include file: "ros/ros.h" not found.
+[src/talker.cpp:41]: (information) Include file: "std_msgs/String.h" not found.
+[src/talker.cpp:42]: (information) Include file: "beginner_tutorials/Output_String.h" not found.
+2/2 files checked 100% done
+
