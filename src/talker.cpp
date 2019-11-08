@@ -79,7 +79,6 @@ int main(int argc, char **argv) {
 
   ros::Rate loop_rate(10);
   int count = 0;
-  std::stringstream ss;
 
   if (!ros::ok()) {
     ROS_FATAL_STREAM("ROS is not running!");  // Fatal message thrown when ROS node is not up
@@ -88,7 +87,6 @@ int main(int argc, char **argv) {
   while (ros::ok()) {
     std_msgs::String msg;
     std::stringstream ss;
-
     int inputFreq = 20;  // Setting default frequency
 
     if (argc == 2) {  // Checking if frequency is an argument
