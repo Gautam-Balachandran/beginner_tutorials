@@ -33,10 +33,10 @@
 
 #define _USE_MATH_DEFINES
 
+#include <tf/transform_broadcaster.h>
 #include <iostream>
 #include <cmath>
 #include <sstream>
-#include <tf/transform_broadcaster.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/Output_String.h"
@@ -58,9 +58,10 @@ extern std::string stringMsg = "This is the custom input String!";
 bool changeOutputMessage(beginner_tutorials::Output_String::Request &req,
                          beginner_tutorials::Output_String::Response &res) {
   stringMsg = req.inputString;
-  res.outputString = stringMsg;             // Output String modified
+  res.outputString = stringMsg;  // Output String modified
 
-  ROS_WARN_STREAM("Output Message Modified!");  // Warning message when the output message is modified
+  // Warning message when the output message is modified
+  ROS_WARN_STREAM("Output Message Modified!");
 
   return true;
 }
@@ -69,7 +70,8 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "talker");
   ros::NodeHandle n;
 
-  static tf::TransformBroadcaster broadcast;  // Transform Broadcaster object
+  // Transform Broadcaster object
+  static tf::TransformBroadcaster broadcast;
   tf::Transform transform;  // Transform Object
 
   ros::Publisher chatter_pub = n.advertise < std_msgs::String
@@ -81,7 +83,8 @@ int main(int argc, char **argv) {
   int count = 0;
 
   if (!ros::ok()) {
-    ROS_FATAL_STREAM("ROS is not running!");  // Fatal message thrown when ROS node is not up
+    // Fatal message thrown when ROS node is not up
+    ROS_FATAL_STREAM("ROS is not running!");
   }
 
   while (ros::ok()) {
@@ -91,17 +94,21 @@ int main(int argc, char **argv) {
 
     if (argc == 2) {  // Checking if frequency is an argument
       inputFreq = atoi(argv[1]);
-      ROS_DEBUG_STREAM("Input frequency : " << inputFreq);  // Debugging message to check the input frequency
+      // Debugging message to check the input frequency
+      ROS_DEBUG_STREAM("Input frequency : " << inputFreq);
 
       if (inputFreq <= 0) {
-        ROS_ERROR_STREAM("Invalid publisher frequency");  // Error message for invalid frequency
+        // Error message for invalid frequency
+        ROS_ERROR_STREAM("Invalid publisher frequency");
       }
     } else {
-      ROS_WARN_STREAM("No input frequency, using default publisher frequency");  // Warning message when using default frequency
+      // Warning message when using default frequency
+      ROS_WARN_STREAM("No input frequency, using default publisher frequency");
     }
 
     if (stringMsg == "") {
-      ROS_DEBUG_STREAM("Input string is empty! Please add an input string");  // Debugging message when input string is empty
+      // Debugging message when input string is empty
+      ROS_DEBUG_STREAM("Input string is empty! Please add an input string");
       return 0;
     }
 
@@ -112,12 +119,15 @@ int main(int argc, char **argv) {
 
     chatter_pub.publish(msg);
 
-    transform.setOrigin(tf::Vector3(5.0, 5.0, 5.0));  // Setting the translation and rotation
+    // Setting the translation and rotation
+    transform.setOrigin(tf::Vector3(5.0, 5.0, 5.0));
     tf::Quaternion quart;
-    quart.setRPY(M_PI, M_PI / 2, M_PI / 3);  // Setting Roll-Pitch-Yaw angles in the Quaternion
+    // Setting Roll-Pitch-Yaw angles in the Quaternion
+    quart.setRPY(M_PI, M_PI / 2, M_PI / 3);
     transform.setRotation(quart);
 
-    // Broadcast the transform with the world frame as parent and the talk frame as the child.
+    /*Broadcast the transform with the world frame as parent and 
+     the talk frame as the child.*/
     broadcast.sendTransform(
         tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 
