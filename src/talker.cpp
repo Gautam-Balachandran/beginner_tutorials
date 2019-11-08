@@ -31,8 +31,12 @@
  *
  */
 
-#include<iostream>
+#define _USE_MATH_DEFINES
+
+#include <iostream>
+#include <cmath>
 #include <sstream>
+#include <tf/transform_broadcaster.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "beginner_tutorials/Output_String.h"
@@ -64,6 +68,9 @@ bool changeOutputMessage(beginner_tutorials::Output_String::Request &req,
 int main(int argc, char **argv) {
   ros::init(argc, argv, "talker");
   ros::NodeHandle n;
+  
+  static tf::TransformBroadcaster broadcast; // Transform Broadcaster object
+  tf::Transform transform; // Transform Object
 
   ros::Publisher chatter_pub = n.advertise < std_msgs::String > ("chatter", 1000);
   ros::ServiceServer server = n.advertiseService("Output_String", changeOutputMessage);
@@ -105,6 +112,15 @@ int main(int argc, char **argv) {
     ROS_INFO("%s", msg.data.c_str());
 
     chatter_pub.publish(msg);
+    
+    transform.setOrigin(tf::Vector3(5.0, 5.0, 5.0)); // Setting the translation and rotation
+    tf::Quaternion quart;
+    quart.setRPY(M_PI, M_PI/2, M_PI/3); // Setting Roll-Pitch-Yaw angles in the Quaternion
+    transform.setRotation(quart);
+    
+    // Broadcast the transform with the world frame as parent and the talk frame as the child.
+    broadcast.sendTransform(tf::StampedTransform(transform,ros::Time::now(), "world", "talk"));
+        
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
