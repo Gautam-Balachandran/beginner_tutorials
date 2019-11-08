@@ -45,7 +45,8 @@
  */
 TEST(TESTSuite, serviceExistenceTest) {
     ros::NodeHandle rosNode;
-    ros::ServiceClient client = rosNode.serviceClient<beginner_tutorials::Output_String>("Output_String");
+    ros::ServiceClient client = rosNode.serviceClient<beginner_tutorials::
+        Output_String>("Output_String");
     bool exists(client.waitForExistence(ros::Duration(5)));
     EXPECT_TRUE(exists);
 }
@@ -57,7 +58,8 @@ TEST(TESTSuite, serviceExistenceTest) {
  */
 TEST(TESTSuite, serviceExecutionTest) {
     ros::NodeHandle n;
-    ros::ServiceClient client = n.serviceClient<beginner_tutorials::Output_String>("Output_String");
+    ros::ServiceClient client = n.serviceClient<beginner_tutorials::
+        Output_String>("Output_String");
     beginner_tutorials::Output_String srv;
     srv.request.inputString = "Service Called!";
     client.call(srv);
