@@ -20,5 +20,13 @@
     output="screen"
     launch-prefix="gnome-terminal --command"
   />
+  
+  <node
+    pkg="rosbag"
+    name="rosbag_recorder"
+    type="record"
+    args="--all --output-name=$(find beginner_tutorials)/results/rosbag_result.bag"
+    if="$(arg record)"
+    />
 
 </launch>
