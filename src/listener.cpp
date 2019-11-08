@@ -1,4 +1,4 @@
- /*
+/*
  *  @file    listener.cpp
  *  @author  Gautam Balachandran
  *  @copyright MIT License
@@ -30,7 +30,6 @@
  *  It defines the listener module of the program.
  *
  */
-
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"

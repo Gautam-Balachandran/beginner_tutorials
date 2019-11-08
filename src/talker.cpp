@@ -68,12 +68,14 @@ bool changeOutputMessage(beginner_tutorials::Output_String::Request &req,
 int main(int argc, char **argv) {
   ros::init(argc, argv, "talker");
   ros::NodeHandle n;
-  
-  static tf::TransformBroadcaster broadcast; // Transform Broadcaster object
-  tf::Transform transform; // Transform Object
 
-  ros::Publisher chatter_pub = n.advertise < std_msgs::String > ("chatter", 1000);
-  ros::ServiceServer server = n.advertiseService("Output_String", changeOutputMessage);
+  static tf::TransformBroadcaster broadcast;  // Transform Broadcaster object
+  tf::Transform transform;  // Transform Object
+
+  ros::Publisher chatter_pub = n.advertise < std_msgs::String
+      > ("chatter", 1000);
+  ros::ServiceServer server = n.advertiseService("Output_String",
+                                                 changeOutputMessage);
 
   ros::Rate loop_rate(10);
   int count = 0;
@@ -91,14 +93,13 @@ int main(int argc, char **argv) {
 
     if (argc == 2) {  // Checking if frequency is an argument
       inputFreq = atoi(argv[1]);
-      ROS_DEBUG_STREAM("Input frequency : " << inputFreq); // Debugging message to check the input frequency
-      
+      ROS_DEBUG_STREAM("Input frequency : " << inputFreq);  // Debugging message to check the input frequency
+
       if (inputFreq <= 0) {
-        ROS_ERROR_STREAM("Invalid publisher frequency"); // Error message for invalid frequency
+        ROS_ERROR_STREAM("Invalid publisher frequency");  // Error message for invalid frequency
       }
-    }
-    else {
-      ROS_WARN_STREAM("No input frequency, using default publisher frequency");// Warning message when using default frequency
+    } else {
+      ROS_WARN_STREAM("No input frequency, using default publisher frequency");  // Warning message when using default frequency
     }
 
     if (stringMsg == "") {
@@ -112,15 +113,16 @@ int main(int argc, char **argv) {
     ROS_INFO("%s", msg.data.c_str());
 
     chatter_pub.publish(msg);
-    
-    transform.setOrigin(tf::Vector3(5.0, 5.0, 5.0)); // Setting the translation and rotation
+
+    transform.setOrigin(tf::Vector3(5.0, 5.0, 5.0));  // Setting the translation and rotation
     tf::Quaternion quart;
-    quart.setRPY(M_PI, M_PI/2, M_PI/3); // Setting Roll-Pitch-Yaw angles in the Quaternion
+    quart.setRPY(M_PI, M_PI / 2, M_PI / 3);  // Setting Roll-Pitch-Yaw angles in the Quaternion
     transform.setRotation(quart);
-    
+
     // Broadcast the transform with the world frame as parent and the talk frame as the child.
-    broadcast.sendTransform(tf::StampedTransform(transform,ros::Time::now(), "world", "talk"));
-        
+    broadcast.sendTransform(
+        tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
