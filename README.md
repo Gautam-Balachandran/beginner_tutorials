@@ -253,7 +253,7 @@ compression: none [1/1 chunks]
 types:       rosgraph_msgs/Log  [acffd30cd6b6de30f120938c17c593fb]
              std_msgs/String    [992ce8a1687cec8c8bd883ec73ca41d1]
              tf2_msgs/TFMessage [94810edda583a504dfda3829e70d7eec]
-topics:      /chatter      307 msgs    : std_msgs/String   
+topics:      /chatter      307 msgs    : std_msgs/String
              /rosout       617 msgs    : rosgraph_msgs/Log  (3 connections)
              /rosout_agg   614 msgs    : rosgraph_msgs/Log 
              /tf           307 msgs    : tf2_msgs/TFMessage
